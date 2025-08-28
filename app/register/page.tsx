@@ -1,0 +1,149 @@
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+
+export default function RegisterPage() {
+  const router = useRouter()
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    handle: '',
+  })
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        // Registration successful, redirect to login
+        router.push('/login?message=Registration successful! Please log in.')
+      } else {
+        setError(data.error || 'Registration failed')
+      }
+    } catch (error) {
+      console.error('Registration error:', error)
+      setError('An error occurred')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  return (
+    <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4">
+      <div className="max-w-md w-full">
+        <div className="text-center mb-8">
+          <Link href="/" className="text-3xl font-bold text-black">
+            NOTHINGFEED :I
+          </Link>
+          <p className="mt-2 text-black">Join the void. Delete everything.</p>
+        </div>
+
+        <Card className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
+          <CardContent className="p-6">
+            <h2 className="text-2xl font-bold text-black mb-6">Create Account</h2>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-sm font-bold text-black mb-1">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="handle" className="block text-sm font-bold text-black mb-1">
+                  Handle (username)
+                </label>
+                <input
+                  id="handle"
+                  name="handle"
+                  type="text"
+                  required
+                  value={formData.handle}
+                  onChange={handleChange}
+                  placeholder="e.g. voidwalker"
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
+                />
+              </div>
+
+
+
+              <div>
+                <label htmlFor="password" className="block text-sm font-bold text-black mb-1">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
+                />
+              </div>
+
+              {error && (
+                <Alert className="border-2 border-black bg-white shadow-[2px_2px_0px_0px_#000000]">
+                  <AlertDescription className="text-black">
+                    {error}
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-black text-white border-2 border-black shadow-[4px_4px_0px_0px_#000000] hover:shadow-[6px_6px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] disabled:opacity-50 font-bold text-lg transition-all duration-200"
+                size="lg"
+              >
+                {isLoading ? 'Creating Account...' : 'Join the Void'}
+              </Button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-black">
+                Already have an account?{' '}
+                <Link href="/login" className="font-bold hover:underline">
+                  Log in
+                </Link>
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}

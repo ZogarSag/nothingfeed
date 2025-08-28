@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  passwordHash String  @map("password_hash")
+  handle      String   @unique
+  displayName String?  @map("display_name")
+  bio         String?
+  avatarUrl   String?  @map("avatar_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  deletions   Deletion[]
+  stats       UserStats?
+  
+  @@map("users")
+}
+
+model Deletion {
+  id            String   @id @default(cuid())
+  authorId      String   @map("author_id")
+  charCount     Int      @map("char_count")
+  wordCount     Int      @default(0) @map("word_count")
+  sentenceCount Int      @default(0) @map("sentence_count")
+  imageCount    Int      @default(0) @map("image_count")
+  linkCount     Int      @default(0) @map("link_count")
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  author        User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  @@map("deletions")
+}
+
+// Optional: For quick profile statistics aggregation
+model UserStats {
+  id               String   @id @default(cuid())
+  userId           String   @unique @map("user_id")
+  totalChars       Int      @default(0) @map("total_chars")
+  totalWords       Int      @default(0) @map("total_words")
+  totalSentences   Int      @default(0) @map("total_sentences")
+  totalImages      Int      @default(0) @map("total_images")
+  totalLinks       Int      @default(0) @map("total_links")
+  totalActions     Int      @default(0) @map("total_actions")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("user_stats")
+}
