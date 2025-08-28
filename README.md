@@ -65,7 +65,6 @@ NOTHINGFEED uses a **brutalist design** approach:
 - Sharp, eckige edges (no rounded corners)
 - Bold black borders and shadows
 - Minimalist color palette (black, white, grey, red accents)
-- The iconic `:I` logo representing the melancholic nature of deletion
 
 ## 📊 Features
 
