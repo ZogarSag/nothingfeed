@@ -5,9 +5,18 @@ import { join } from 'path'
 import { existsSync } from 'fs'
 import { sessionOptions, SessionData } from '@/lib/session'
 import { prisma } from '@/lib/prisma'
+import { checkRateLimit, rateLimitOptions } from '@/lib/rateLimit'
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting for file uploads
+    if (!checkRateLimit(request, rateLimitOptions.upload)) {
+      return NextResponse.json(
+        { error: 'Too many uploads. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
     const session = await getIronSession<SessionData>(request, NextResponse.next(), sessionOptions)
 
     if (!session.isLoggedIn || !session.userId) {

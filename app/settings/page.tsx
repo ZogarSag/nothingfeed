@@ -142,15 +142,13 @@ export default function SettingsPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex justify-center mb-8">
-          <Card className="w-full max-w-2xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
+          <Card className="w-full max-w-md bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-black text-center">Account Settings</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Profile Info */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-black">Profile Information</h3>
-                
                 {error && (
                   <div className="p-3 bg-red-100 border-2 border-red-500 text-red-700">
                     {error}
@@ -166,54 +164,58 @@ export default function SettingsPage() {
                 <div className="space-y-4">
                   {/* Username */}
                   <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Username:</span>
-                      {!isEditing && (
-                        <Button
-                          onClick={() => setIsEditing(true)}
-                          className="text-sm px-2 py-1 bg-gray-100 text-black border border-gray-300 hover:bg-gray-200"
-                        >
-                          Edit
-                        </Button>
-                      )}
-                    </div>
-                    
                     {isEditing ? (
-                      <form onSubmit={handleUpdateHandle} className="space-y-2">
-                        <div className="flex space-x-2">
-                          <span className="text-black font-bold">@</span>
-                          <input
-                            type="text"
-                            value={newHandle}
-                            onChange={(e) => setNewHandle(e.target.value)}
-                            className="flex-1 px-2 py-1 border-2 border-black"
-                            placeholder="username"
-                            pattern="[a-zA-Z0-9_]+"
-                            title="Only letters, numbers, and underscores allowed"
-                          />
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-gray-600">Username:</span>
                         </div>
-                        <div className="flex space-x-2">
-                          <Button
-                            type="submit"
-                            className="text-sm px-3 py-1 bg-black text-white border-2 border-black hover:bg-gray-800"
-                          >
-                            Save
-                          </Button>
-                          <Button
-                            type="button"
-                            onClick={() => {
-                              setIsEditing(false)
-                              setNewHandle(user?.handle || '')
-                              setError('')
-                            }}
-                            className="text-sm px-3 py-1 bg-gray-100 text-black border-2 border-black hover:bg-gray-200"
-                          >
-                            Cancel
-                          </Button>
-                        </div>
-                      </form>
+                        <form onSubmit={handleUpdateHandle} className="space-y-2">
+                          <div className="flex space-x-2">
+                            <span className="text-black font-bold">@</span>
+                            <input
+                              type="text"
+                              value={newHandle}
+                              onChange={(e) => setNewHandle(e.target.value)}
+                              className="flex-1 px-2 py-1 border-2 border-black"
+                              placeholder="username"
+                              pattern="[a-zA-Z0-9_]+"
+                              title="Only letters, numbers, and underscores allowed"
+                            />
+                          </div>
+                          <div className="flex space-x-2">
+                            <Button
+                              type="submit"
+                              className="text-sm px-3 py-1 bg-black text-white border-2 border-black hover:bg-gray-800"
+                            >
+                              Save
+                            </Button>
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                setIsEditing(false)
+                                setNewHandle(user?.handle || '')
+                                setError('')
+                              }}
+                              className="text-sm px-3 py-1 bg-gray-100 text-black border-2 border-black hover:bg-gray-200"
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                        </form>
+                      </div>
                     ) : (
-                      <span className="font-bold text-black">@{user.handle}</span>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-600">Username:</span>
+                        <div className="flex items-center space-x-2">
+                          <span className="font-bold text-black">@{user.handle}</span>
+                          <button
+                            onClick={() => setIsEditing(true)}
+                            className="text-sm text-black underline hover:no-underline"
+                          >
+                            Edit
+                          </button>
+                        </div>
+                      </div>
                     )}
                   </div>
 
@@ -231,26 +233,8 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              {/* Privacy Notice */}
-              <div className="space-y-4 border-t-2 border-black pt-6">
-                <h3 className="text-lg font-bold text-black">Privacy by Design</h3>
-                <div className="p-4 bg-gray-50 border-2 border-black">
-                  <p className="text-sm text-black mb-2">
-                    🔒 <strong>NOTHINGFEED</strong> protects your privacy by design:
-                  </p>
-                  <ul className="text-sm text-black space-y-1 ml-4">
-                    <li>• All content is immediately deleted after posting</li>
-                    <li>• Only metadata (character/image/link counts) is stored</li>
-                    <li>• No content tracking or data mining</li>
-                    <li>• Your thoughts disappear into the void</li>
-                  </ul>
-                </div>
-              </div>
-
               {/* Actions */}
               <div className="space-y-4 border-t-2 border-black pt-6">
-                <h3 className="text-lg font-bold text-black">Account Actions</h3>
-                
                 <div className="space-y-3">
                   <Link href={`/profile/${user.handle}`}>
                     <Button className="w-full bg-white text-black border-2 border-black shadow-[4px_4px_0px_0px_#000000] hover:shadow-[6px_6px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-200">

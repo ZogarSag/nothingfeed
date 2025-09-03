@@ -186,7 +186,7 @@ export default function ProfilePage() {
                     )}
                   </div>
                   {isOwnProfile && (
-                    <div className="mt-2">
+                    <div className="mt-1 text-center">
                       <label className="cursor-pointer">
                         <input
                           type="file"
@@ -195,9 +195,9 @@ export default function ProfilePage() {
                           className="hidden"
                           disabled={isUploadingAvatar}
                         />
-                        <div className="text-xs text-center px-2 py-1 border-2 border-black bg-white hover:bg-gray-50 transition-colors">
+                        <span className="text-xs text-black underline hover:no-underline">
                           {isUploadingAvatar ? 'Uploading...' : 'Change Avatar'}
-                        </div>
+                        </span>
                       </label>
                     </div>
                   )}
@@ -235,7 +235,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-black text-center">Recent Destructions</h2>
+          <h2 className="text-xl font-bold text-black text-center">Recent Activity</h2>
           
           {deletions.length === 0 ? (
             <div className="flex justify-center">
@@ -254,10 +254,18 @@ export default function ProfilePage() {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gray-200 border-2 border-black shadow-[3px_3px_0px_0px_#000000] flex items-center justify-center">
-                          <span className="text-lg font-bold text-black">
-                            {user.handle.charAt(0).toUpperCase()}
-                          </span>
+                        <div className="w-12 h-12 bg-gray-200 border-2 border-black shadow-[3px_3px_0px_0px_#000000] flex items-center justify-center overflow-hidden">
+                          {user.avatarUrl ? (
+                            <img
+                              src={user.avatarUrl}
+                              alt={`${user.handle}'s avatar`}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <span className="text-lg font-bold text-black">
+                              {user.handle.charAt(0).toUpperCase()}
+                            </span>
+                          )}
                         </div>
                         <div>
                           <div className="font-bold text-black">@{user.handle}</div>
@@ -270,11 +278,7 @@ export default function ProfilePage() {
                       Deleted {deletion.charCount} characters, {deletion.wordCount || 0} words and {deletion.sentenceCount || 0} sentences
                     </div>
                     
-                    <div className="flex space-x-4 text-sm text-gray-600">
-                      <span>💀 {deletion.charCount} chars</span>
-                      <span>📝 {deletion.wordCount || 0} words</span>
-                      <span>📄 {deletion.sentenceCount || 0} sentences</span>
-                    </div>
+
                   </CardContent>
                 </Card>
               </div>

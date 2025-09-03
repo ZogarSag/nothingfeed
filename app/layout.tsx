@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import SimpleHeader from '@/components/SimpleHeader'
-import Footer from '@/components/Footer'
+import ClientLayout from '@/components/ClientLayout'
 
 export const metadata: Metadata = {
-  title: 'NOTHINGFEED',
+  title: 'NOTHINGFEED :I',
   description: 'A platform for deleting content - write, post, delete. Only metadata remains.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
@@ -16,13 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="min-h-screen bg-white">
-          <SimpleHeader />
-          <main className="max-w-6xl mx-auto py-8">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )

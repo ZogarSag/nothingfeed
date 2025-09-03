@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background -->
+  <rect width="32" height="32" fill="white"/>
+  
+  <!-- Black border (brutalist style) -->
+  <rect x="0" y="0" width="32" height="32" fill="none" stroke="black" stroke-width="3"/>
+  
+  <!-- Colon (:) - positioned like in logo -->
+  <circle cx="10" cy="10" r="2.5" fill="black"/>
+  <circle cx="10" cy="18" r="2.5" fill="black"/>
+  
+  <!-- I - bold and centered -->
+  <rect x="20" y="8" width="4" height="16" fill="black"/>
+  
+  <!-- Shadow effect (brutalist) -->
+  <rect x="2" y="2" width="28" height="28" fill="none" stroke="black" stroke-width="1" opacity="0.3"/>
+</svg>

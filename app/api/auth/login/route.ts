@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { getIronSession } from 'iron-session'
 import { prisma } from '@/lib/prisma'
 import { sessionOptions, SessionData } from '@/lib/session'
+import { checkRateLimit, rateLimitOptions } from '@/lib/rateLimit'
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -12,6 +13,14 @@ const loginSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting for auth endpoints
+    if (!checkRateLimit(request, rateLimitOptions.auth)) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
     const body = await request.json()
     
     // Validate input
