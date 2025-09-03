@@ -1,20 +1,3 @@
-# NOTHINGFEED :I
-
-A minimalist platform where content gets deleted immediately - only metadata survives.
-
-## 🎯 Concept
-
-NOTHINGFEED follows a "Privacy by Design" principle. Users write posts, but the actual content gets deleted instantly. Only metadata like character count, word count, and sentence count are stored and displayed.
-
-## ✨ Features
-
-- **Instant Content Deletion**: Write posts that get deleted immediately after submission
-- **Metadata Tracking**: Track characters, words, and sentences across all your deletions
-- **User Profiles**: View user statistics and deletion history
-- **Avatar Upload**: Upload custom profile pictures
-- **Authentication**: Secure login/registration with session management
-- **Responsive Design**: Modern, brutalist UI with sharp edges and bold shadows
-
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 15 with React and TypeScript
@@ -82,7 +65,6 @@ NOTHINGFEED uses a **brutalist design** approach:
 - Sharp, eckige edges (no rounded corners)
 - Bold black borders and shadows
 - Minimalist color palette (black, white, grey, red accents)
-- The iconic `:I` logo representing the melancholic nature of deletion
 
 ## 📊 Features
 
@@ -121,15 +103,3 @@ The app uses Prisma with SQLite:
 - `GET /api/feed` - Get public deletion feed
 - `POST /api/compose` - Submit content for deletion
 - `POST /api/auth/upload-avatar` - Upload profile picture
-
-## 🤝 Contributing
-
-This is a personal project, but feel free to fork and experiment!
-
-## 📄 License
-
-MIT License - feel free to use and modify.
-
----
-
-**"In the void, only echoes remain."** 💀
