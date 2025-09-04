@@ -54,10 +54,9 @@ export function checkRateLimit(
   request: NextRequest,
   options: RateLimitOptions = { windowMs: 15 * 60 * 1000, maxRequests: 100 }
 ): boolean {
-  const ip = request.ip || 
-    request.headers.get('x-forwarded-for') || 
-    request.headers.get('x-real-ip') || 
-    'unknown'
+  const ip = request.headers.get('x-forwarded-for') || 
+  request.headers.get('x-real-ip') || 
+  'unknown'
     
   return rateLimiter.isAllowed(ip, options)
 }

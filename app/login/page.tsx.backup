@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -8,14 +8,6 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 
 export default function LoginPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LoginPageContent />
-    </Suspense>
-  )
-}
-
-function LoginPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [formData, setFormData] = useState({
@@ -83,23 +75,15 @@ function LoginPageContent() {
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-black mb-6">Log In</h2>
             
-            <form
-              autoComplete="off" 
-              data-form-type="other"
-              onSubmit={handleSubmit} 
-              className="space-y-4" 
-            >
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-sm font-bold text-black mb-1">
                   Email
                 </label>
                 <input
                   id="email"
-                  name="user_input"
+                  name="email"
                   type="email"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other" 
                   required
                   value={formData.email}
                   onChange={handleChange}
@@ -113,11 +97,8 @@ function LoginPageContent() {
                 </label>
                 <input
                   id="password"
-                  name="secret_code"
+                  name="password"
                   type="password"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
                   required
                   value={formData.password}
                   onChange={handleChange}
@@ -165,4 +146,3 @@ function LoginPageContent() {
     </div>
   )
 }
-
