@@ -103,3 +103,4 @@ The app uses Prisma with SQLite:
 - `GET /api/feed` - Get public deletion feed
 - `POST /api/compose` - Submit content for deletion
 - `POST /api/auth/upload-avatar` - Upload profile picture
+# Test CI/CD
