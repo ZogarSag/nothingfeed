@@ -104,3 +104,4 @@ The app uses Prisma with SQLite:
 - `POST /api/compose` - Submit content for deletion
 - `POST /api/auth/upload-avatar` - Upload profile picture
 # Test CI/CD
+# Test CI/CD - Secrets korrigiert
