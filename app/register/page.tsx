@@ -61,7 +61,17 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="max-w-md w-full mx-auto">
+      <div className="max-w-md w-full mx-auto space-y-6">
+        {/* Message Card */}
+        <Card className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
+          <CardContent className="p-6">
+            <p className="text-black text-center font-medium">
+              Social media kills time, thought, and truth. You know it's poison. Still hooked? Here you go.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Create Account Card */}
         <Card className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-black mb-6">Create Account</h2>
