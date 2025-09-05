@@ -3,8 +3,8 @@ import './globals.css'
 import ClientLayout from '@/components/ClientLayout'
 
 export const metadata: Metadata = {
-  title: 'NOTHINGFEED :I',
-  description: 'A platform for deleting content - write, post, delete. Only metadata remains.',
+  title: 'NOTHINGFEED :I Asocial Media Platform',
+  description: 'Asocial Media Platform - write, post, delete. Only metadata remains.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
