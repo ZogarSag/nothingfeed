@@ -60,15 +60,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4">
-      <div className="max-w-md w-full">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-bold text-black">
-            NOTHINGFEED :I
-          </Link>
-          <p className="mt-2 text-black">Join the void. Delete everything.</p>
-        </div>
-
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="max-w-md w-full mx-auto">
         <Card className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-black mb-6">Create Account</h2>
@@ -76,7 +69,7 @@ export default function RegisterPage() {
             <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off" data-form-type="other">
               <div>
                 <label htmlFor="user_email" className="block text-sm font-bold text-black mb-1">
-                  Email
+                  E-Mail
                 </label>
                 <input
                   id="user_email"
@@ -94,7 +87,7 @@ export default function RegisterPage() {
 
               <div>
                 <label htmlFor="user_handle" className="block text-sm font-bold text-black mb-1">
-                  Handle (username)
+                  Username
                 </label>
                 <input
                   id="user_handle"
@@ -143,7 +136,7 @@ export default function RegisterPage() {
                 className="w-full bg-black text-white border-2 border-black shadow-[4px_4px_0px_0px_#000000] hover:shadow-[6px_6px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] disabled:opacity-50 font-bold text-lg transition-all duration-200"
                 size="lg"
               >
-                {isLoading ? 'Creating Account...' : 'Join the Void'}
+                {isLoading ? 'Creating Account...' : 'Join'}
               </Button>
             </form>
 
