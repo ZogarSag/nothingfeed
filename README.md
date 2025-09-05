@@ -103,3 +103,10 @@ The app uses Prisma with SQLite:
 - `GET /api/feed` - Get public deletion feed
 - `POST /api/compose` - Submit content for deletion
 - `POST /api/auth/upload-avatar` - Upload profile picture
+# Test CI/CD
+# Test CI/CD - Secrets korrigiert
+# Test CI/CD - SSH Key korrigiert
+# Test CI/CD - SSH Key korrigiert
+# Test CI/CD - SSH Key korrigiert
+# Test CI/CD - PM2 installiert
+# Test CI/CD - PM2 App gestartet

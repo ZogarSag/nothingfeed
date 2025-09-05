@@ -3,13 +3,21 @@
 import Header from './Header'
 import Footer from './Footer'
 import { useEffect, useState } from 'react'
+interface User {
+  id: string;
+  email: string;
+  handle: string;
+  displayName?: string;
+  avatarUrl?: string | null;
+  createdAt: Date;
+}
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -36,7 +44,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header user={user} isLoading={isLoading} avatarUrl={user?.avatarUrl} />
+      <Header user={user} isLoading={isLoading} avatarUrl={user?.avatarUrl || undefined} />
       <main className="max-w-6xl mx-auto py-8">
         {children}
       </main>

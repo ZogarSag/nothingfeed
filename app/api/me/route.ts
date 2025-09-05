@@ -18,6 +18,7 @@ export async function GET(request: NextRequest) {
         id: true,
         email: true,
         handle: true,
+        displayName: true,
         avatarUrl: true,
         createdAt: true,
       }
