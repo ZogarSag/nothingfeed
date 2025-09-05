@@ -80,12 +80,11 @@ function LoginPageContent() {
           <Link href="/" className="text-3xl font-bold text-black">
             NOTHINGFEED :I
           </Link>
-          <p className="mt-2 text-black">Welcome back to the void.</p>
         </div>
 
         <Card className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
           <CardContent className="p-6">
-            <h2 className="text-2xl font-bold text-black mb-6">Log In</h2>
+            <h2 className="text-2xl font-bold text-black mb-6">Login</h2>
             
             <form 
               onSubmit={handleSubmit} 
@@ -95,7 +94,7 @@ function LoginPageContent() {
             >
               <div>
                 <label htmlFor="email" className="block text-sm font-bold text-black mb-1">
-                  Email
+                  E-Mail
                 </label>
                 <input
                   id="email"
@@ -151,7 +150,7 @@ function LoginPageContent() {
                 className="w-full bg-black text-white border-2 border-black shadow-[4px_4px_0px_0px_#000000] hover:shadow-[6px_6px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] disabled:opacity-50 font-bold text-lg transition-all duration-200"
                 size="lg"
               >
-                {isLoading ? 'Logging in...' : 'Enter the Void'}
+                {isLoading ? 'Logging in...' : 'Enter'}
               </Button>
             </form>
 
