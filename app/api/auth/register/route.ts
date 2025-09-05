@@ -4,9 +4,9 @@ import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 
 const registerSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  handle: z.string()
+  user_email: z.string().email('Invalid email address'),
+  user_password: z.string().min(8, 'Password must be at least 8 characters'),
+  user_handle: z.string()
     .min(3, 'Handle must be at least 3 characters')
     .max(20, 'Handle must be at most 20 characters')
     .regex(/^[a-zA-Z0-9_]+$/, 'Handle can only contain letters, numbers, and underscores'),
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { email, password, handle } = result.data
+    const { user_email: email, user_password: password, user_handle: handle } = result.data
 
     // Check if email or handle already exists
     const existingUser = await prisma.user.findFirst({

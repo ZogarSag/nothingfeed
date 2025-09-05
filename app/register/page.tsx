@@ -46,9 +46,12 @@ export default function RegisterPage() {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fieldName = e.target.name === 'user_email' ? 'email' : 
+                     e.target.name === 'user_password' ? 'password' : 
+                     e.target.name === 'user_handle' ? 'handle' : e.target.name
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [fieldName]: e.target.value,
     })
   }
 
@@ -66,51 +69,58 @@ export default function RegisterPage() {
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-black mb-6">Create Account</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off" data-form-type="other">
               <div>
-                <label htmlFor="email" className="block text-sm font-bold text-black mb-1">
+                <label htmlFor="user_email" className="block text-sm font-bold text-black mb-1">
                   Email
                 </label>
                 <input
-                  id="email"
-                  name="email"
+                  id="user_email"
+                  name="user_email"
                   type="email"
                   required
                   value={formData.email}
                   onChange={handleChange}
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
                   className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
                 />
               </div>
 
               <div>
-                <label htmlFor="handle" className="block text-sm font-bold text-black mb-1">
+                <label htmlFor="user_handle" className="block text-sm font-bold text-black mb-1">
                   Handle (username)
                 </label>
                 <input
-                  id="handle"
-                  name="handle"
+                  id="user_handle"
+                  name="user_handle"
                   type="text"
                   required
                   value={formData.handle}
                   onChange={handleChange}
                   placeholder="e.g. voidwalker"
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
                   className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
                 />
               </div>
 
-
-
               <div>
-                <label htmlFor="password" className="block text-sm font-bold text-black mb-1">
+                <label htmlFor="user_password" className="block text-sm font-bold text-black mb-1">
                   Password
                 </label>
                 <input
-                  id="password"
-                  name="password"
+                  id="user_password"
+                  name="user_password"
                   type="password"
                   required
                   value={formData.password}
                   onChange={handleChange}
+                  autoComplete="new-password"
+                  data-lpignore="true"
+                  data-form-type="other"
                   className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
                 />
               </div>
