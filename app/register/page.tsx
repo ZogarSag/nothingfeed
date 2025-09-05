@@ -96,7 +96,6 @@ export default function RegisterPage() {
                   required
                   value={formData.handle}
                   onChange={handleChange}
-                  placeholder="e.g. voidwalker"
                   autoComplete="off"
                   data-lpignore="true"
                   data-form-type="other"
