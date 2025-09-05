@@ -14,8 +14,8 @@ export const sessionOptions: SessionOptions = {
   cookieName: 'nothingfeed-session',
   cookieOptions: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: false, // Set to false for HTTP servers
+    sameSite: 'lax', // Changed from 'strict' to 'lax' for better compatibility
     maxAge: 60 * 60 * 24 * 7, // 7 days
   },
 }
