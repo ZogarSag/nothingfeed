@@ -4,16 +4,12 @@ export default function ImprintPage() {
       <h1 className="text-3xl font-bold mb-6">Imprint</h1>
       
       <div className="prose prose-lg">
-        <h2>Website Information</h2>
         <p><strong>NOTHINGFEED</strong></p>
-        <p>A social media platform for content deletion</p>
+        <p>A social media platform</p>
 
         <h2>Contact Information</h2>
-        <p>Email: contact@nothingfeed.com</p>
+        <p>E-Mail: joeran.eitel@gmail.com</p>
         <p>Website: https://nothingfeed.com</p>
-
-        <h2>Disclaimer</h2>
-        <p>This website is for entertainment purposes. All content deletion is simulated and no actual data is permanently destroyed.</p>
 
         <h2>Copyright</h2>
         <p>© 2025 NOTHINGFEED. All rights reserved.</p>
