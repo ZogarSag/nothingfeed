@@ -9,6 +9,7 @@ import { checkRateLimit, rateLimitOptions } from '@/lib/rateLimit'
 const loginSchema = z.object({
   user_input: z.string().email('Invalid email address'),
   secret_code: z.string().min(1, 'Password is required'),
+  remember_me: z.boolean().optional().default(false),
 })
 
 export async function POST(request: NextRequest) {
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { user_input: email, secret_code: password } = result.data
+    const { user_input: email, secret_code: password, remember_me } = result.data
 
     // Find user by email
     const user = await prisma.user.findUnique({
@@ -68,7 +69,16 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    const session = await getIronSession<SessionData>(request, response, sessionOptions)
+    // Create dynamic session options based on remember_me
+    const dynamicSessionOptions = {
+      ...sessionOptions,
+      cookieOptions: {
+        ...sessionOptions.cookieOptions,
+        maxAge: remember_me ? 30 * 24 * 60 * 60 : 7 * 24 * 60 * 60, // 30 days vs 7 days
+      }
+    }
+
+    const session = await getIronSession<SessionData>(request, response, dynamicSessionOptions)
     session.isLoggedIn = true
     session.userId = user.id
     await session.save()

@@ -22,6 +22,7 @@ function LoginPageContent() {
     email: '',
     password: '',
   })
+  const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -45,6 +46,7 @@ function LoginPageContent() {
         body: JSON.stringify({
           user_input: formData.email,
           secret_code: formData.password,
+          remember_me: rememberMe,
         }),
       })
 
@@ -122,6 +124,20 @@ function LoginPageContent() {
                   onChange={handleChange}
                   className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
                 />
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  id="remember_me"
+                  name="remember_me"
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 border-2 border-black focus:outline-none focus:shadow-[2px_2px_0px_0px_#000000]"
+                />
+                <label htmlFor="remember_me" className="ml-2 text-sm font-bold text-black">
+                  Remember me
+                </label>
               </div>
 
               {message && (
