@@ -79,6 +79,22 @@ export default function SimpleHeader() {
     }
 
     fetchUser()
+
+    // Listen for login events to refresh user data
+    const handleLogin = () => {
+      fetchUser()
+    }
+
+    // Listen for custom login event
+    window.addEventListener('userLogin', handleLogin)
+    
+    // Also listen for focus events to refresh user data when returning to tab
+    window.addEventListener('focus', fetchUser)
+
+    return () => {
+      window.removeEventListener('userLogin', handleLogin)
+      window.removeEventListener('focus', fetchUser)
+    }
   }, [])
 
   // Close dropdown when clicking outside

@@ -51,7 +51,9 @@ function LoginPageContent() {
       const data = await response.json()
 
       if (response.ok) {
-        // Login successful, redirect to home
+        // Login successful, dispatch event to update header
+        window.dispatchEvent(new CustomEvent('userLogin'))
+        // Redirect to home
         router.push('/')
         router.refresh() // Refresh to update session state
       } else {
