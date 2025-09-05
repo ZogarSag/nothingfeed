@@ -74,14 +74,8 @@ function LoginPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4">
-      <div className="max-w-md w-full">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-bold text-black">
-            NOTHINGFEED :I
-          </Link>
-        </div>
-
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="max-w-md w-full mx-auto">
         <Card className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-black mb-6">Login</h2>
