@@ -108,3 +108,4 @@ The app uses Prisma with SQLite:
 # Test CI/CD - SSH Key korrigiert
 # Test CI/CD - SSH Key korrigiert
 # Test CI/CD - SSH Key korrigiert
+# Test CI/CD - PM2 installiert
