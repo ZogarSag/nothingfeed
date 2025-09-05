@@ -5,14 +5,17 @@ export default function ImprintPage() {
       
       <div className="prose prose-lg">
         <p><strong>NOTHINGFEED</strong></p>
-        <p>A social media platform</p>
-
-        <h2>Contact Information</h2>
-        <p>E-Mail: joeran.eitel@gmail.com</p>
-        <p>Website: https://nothingfeed.com</p>
-
-        <h2>Copyright</h2>
-        <p>© 2025 NOTHINGFEED. All rights reserved.</p>
+        <p>Asocial media platform</p>
+        
+        <p>
+          Jöran Eitel<br />
+          Kurfürstenstraße 24<br />
+          10785 Berlin<br />
+          E-Mail: joeran.eitel@gmail.com<br />
+          Website: https://nothingfeed.com
+        </p>
+        
+        <p><strong>Responsible for content:</strong> Jöran Eitel</p>
       </div>
     </div>
   )
