@@ -105,3 +105,4 @@ The app uses Prisma with SQLite:
 - `POST /api/auth/upload-avatar` - Upload profile picture
 # Test CI/CD
 # Test CI/CD - Secrets korrigiert
+# Test CI/CD - SSH Key korrigiert
