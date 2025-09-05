@@ -75,15 +75,23 @@ export default function LoginPage() {
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-black mb-6">Log In</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-4"
+              autoComplete="off"
+              data-form-type="other"
+            >
               <div>
                 <label htmlFor="email" className="block text-sm font-bold text-black mb-1">
                   Email
                 </label>
                 <input
                   id="email"
-                  name="email"
+                  name="user_input"
                   type="email"
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
                   required
                   value={formData.email}
                   onChange={handleChange}
@@ -97,8 +105,11 @@ export default function LoginPage() {
                 </label>
                 <input
                   id="password"
-                  name="password"
+                  name="secret_code"
                   type="password"
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
                   required
                   value={formData.password}
                   onChange={handleChange}

@@ -7,8 +7,8 @@ import { sessionOptions, SessionData } from '@/lib/session'
 import { checkRateLimit, rateLimitOptions } from '@/lib/rateLimit'
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(1, 'Password is required'),
+  user_input: z.string().email('Invalid email address'),
+  secret_code: z.string().min(1, 'Password is required'),
 })
 
 export async function POST(request: NextRequest) {
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { email, password } = result.data
+    const { user_input: email, secret_code: password } = result.data
 
     // Find user by email
     const user = await prisma.user.findUnique({
