@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback, memo, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import Image from 'next/image'
 import { CornerDownLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -242,6 +243,27 @@ export default function HomePage() {
 
   return (
     <div className="space-y-6">
+      {/* Message Card for logged out users */}
+      {!isLoggedIn && (
+        <div className="flex justify-center">
+          <Card className="bg-white dark:bg-dark-bg border-2 border-black dark:border-dark-border shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#ffffff] w-full max-w-2xl">
+            <CardContent className="p-6">
+              <p className="text-black dark:text-dark-text text-center font-medium">
+                Social media kills time, thought, and truth. You know it's poison. Still hooked?{' '}
+                <Link href="/register" className="font-bold hover:underline text-black dark:text-dark-text">
+                  Signup
+                </Link>
+                {' '}or{' '}
+                <Link href="/login" className="font-bold hover:underline text-black dark:text-dark-text">
+                  Login
+                </Link>
+                .
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       {isLoggedIn && (
         <div className="flex justify-center">
           <Card className="bg-white dark:bg-dark-bg border-2 border-black dark:border-dark-border shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#ffffff] hover:shadow-[6px_6px_0px_0px_#000000] dark:hover:shadow-[6px_6px_0px_0px_#ffffff] transition-shadow w-full max-w-2xl">
@@ -302,24 +324,7 @@ export default function HomePage() {
       )}
 
       <div className="space-y-4">
-        {feed.length === 0 ? (
-          <div className="flex justify-center">
-            <Card className="w-full max-w-2xl text-center py-16 bg-white dark:bg-dark-bg border-2 border-black dark:border-dark-border shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#ffffff]">
-            <CardContent>
-              <div className="text-6xl mb-4">💀</div>
-              <h3 className="text-2xl font-bold text-black dark:text-dark-text mb-2">Nothing deleted yet!</h3>
-              <p className="text-black dark:text-dark-text mb-6 max-w-md mx-auto">Nothing has been deleted yet. Start your first destruction and kill some characters, words, and sentences!</p>
-            {!isLoggedIn && (
-                <Button asChild variant="outline" className="bg-gray-100 dark:bg-dark-bg text-black dark:text-dark-text border-2 border-black dark:border-dark-border shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#ffffff] hover:bg-gray-200 dark:hover:bg-gray-900 hover:shadow-[6px_6px_0px_0px_#000000] dark:hover:shadow-[6px_6px_0px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-200 font-bold">
-                  <a href="/register">
-                    Join the Chaos
-                  </a>
-                </Button>
-              )}
-            </CardContent>
-            </Card>
-          </div>
-        ) : (
+        {feed.length > 0 && (
           <div className="space-y-4">
             {feed.map((deletion) => (
               <FeedItem key={deletion.id} deletion={deletion} />
