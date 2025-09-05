@@ -63,9 +63,10 @@ function LoginPageContent() {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fieldName = e.target.name === 'user_input' ? 'email' : 'password'
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [fieldName]: e.target.value,
     })
   }
 
