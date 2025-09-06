@@ -251,7 +251,7 @@ export default function HomePage() {
               <p className="text-black dark:text-dark-text text-center font-medium">
                 Social media kills time, thought, and truth. You know it's poison. Still hooked?{' '}
                 <Link href="/register" className="font-bold hover:underline text-black dark:text-dark-text">
-                  Signup
+                  Sign up
                 </Link>
                 {' '}or{' '}
                 <Link href="/login" className="font-bold hover:underline text-black dark:text-dark-text">
