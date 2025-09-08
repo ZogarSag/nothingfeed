@@ -9,13 +9,24 @@ export const defaultSession: SessionData = {
   isLoggedIn: false,
 }
 
+// In production, a SESSION_SECRET must be provided via environment variables.
+// We throw early to avoid accidentally running with an insecure fallback.
+const isProduction = process.env.NODE_ENV === 'production'
+const sessionPassword = process.env.SESSION_SECRET
+
+if (isProduction && (!sessionPassword || sessionPassword.length < 32)) {
+  throw new Error('SESSION_SECRET must be set to a strong value in production')
+}
+
 export const sessionOptions: SessionOptions = {
-  password: process.env.SESSION_SECRET || 'fallback-secret-key-for-development-only-change-in-production',
+  password: sessionPassword || 'development-only-weak-secret-do-not-use-in-production',
   cookieName: 'nothingfeed-session',
   cookieOptions: {
     httpOnly: true,
-    secure: false, // Set to false for HTTP servers
-    sameSite: 'lax', // Changed from 'strict' to 'lax' for better compatibility
+    // Only transmit cookies over HTTPS in production
+    secure: isProduction,
+    // Use strict in production to improve CSRF resilience; keep lax in dev for convenience
+    sameSite: isProduction ? 'strict' : 'lax',
     maxAge: 60 * 60 * 24 * 7, // 7 days
   },
 }
